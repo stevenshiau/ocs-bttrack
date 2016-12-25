@@ -1045,7 +1045,10 @@ class Tracker:
         #print self.state["completed"]
         for k,v in self.state["completed"].items():
             #print "completed %s and elapsed %s " % (v, elapsed)
-            if self.tracker_max_completed != 0 and v >= self.tracker_max_completed:
+            # Somehow the non-present event also +1 for self.state["completed"].items(), hence here
+            # we use self.completedno
+            #if self.tracker_max_completed != 0 and v >= self.tracker_max_completed:
+            if self.tracker_max_completed != 0 and self.completedno >= self.tracker_max_completed:
                 exit = 1
             if self.tracker_timeout != 0 and  elapsed >= self.tracker_timeout:
                 exit = 1
