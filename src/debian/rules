@@ -1,0 +1,65 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+PYTHON_VERSION=$(shell /usr/bin/python -V 2>&1 | /usr/bin/perl -le 'print "$$1.$$2" if <> =~m/^Python\s+(\d+)\.(\d+)(\.\d+)*/')
+
+build-stamp: ocs-bttrack.1
+	dh_testdir
+	touch build-stamp
+
+%.1:	debian/%.sgml
+	/usr/bin/docbook-to-man $< > debian/$@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -rf build/ OCSBttrack/BT1/*.pyc OCSBttrack/*.pyc *.pyc
+	rm -f debian/*.1
+	rm -f build-stamp
+	dh_clean
+
+install: build-stamp
+
+
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	# Add here commands to install the package into debian/bittornado.
+	dh_auto_install -- --root=$(CURDIR)/debian/tmp
+
+	install -d debian/tmp/usr/share/ocs-bttrack
+
+
+# Build architecture-independent files here.
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installexamples
+	dh_installmenu
+	dh_installmime
+	dh_installman
+
+	( cd debian/tmp/usr/bin && \
+	  mv ocs-bttrack.py ocs-bttrack )
+	
+	dh_installchangelogs 
+	dh_install --sourcedir=debian/tmp
+	dh_link
+	dh_compress
+	dh_fixperms
+	dh_python2
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

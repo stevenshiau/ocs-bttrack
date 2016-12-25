@@ -1,0 +1,390 @@
+<!doctype refentry PUBLIC "-//OASIS//DTD DocBook V4.1//EN" [
+
+  <!-- Fill in your name for FIRSTNAME and SURNAME. -->
+  <!ENTITY dhfirstname "<firstname>Steven</firstname>">
+  <!ENTITY dhsurname   "<surname>Shiau</surname>">
+  <!-- Please adjust the date whenever revising the manpage. -->
+  <!ENTITY dhdate      "<date>Dec 24, 2016</date>">
+  <!-- SECTION should be 1-8, maybe w/ subsection other parameters are
+       allowed: see man(7), man(1). -->
+  <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
+  <!ENTITY dhemail     "<email>steven@clonezilla.org</email>">
+  <!ENTITY dhusername  "Steven Shiau">
+  <!ENTITY dhucpackage "<refentrytitle>ocs-bttrack</refentrytitle>">
+  <!ENTITY dhpackage   "ocs-bttrack">
+
+  <!ENTITY debian      "<productname>Debian</productname>">
+  <!ENTITY gnu         "<acronym>GNU</acronym>">
+  <!ENTITY gpl         "&gnu; <acronym>GPL</acronym>">
+]>
+
+<refentry>
+  <refentryinfo>
+    <address>
+      &dhemail;
+    </address>
+    <author>
+      &dhfirstname;
+      &dhsurname;
+    </author>
+    <copyright>
+      <year>2016</year>
+      <holder>&dhusername;</holder>
+    </copyright>
+    &dhdate;
+  </refentryinfo>
+  <refmeta>
+    &dhucpackage;
+
+    &dhsection;
+  </refmeta>
+
+  <refnamediv>
+    <refname>&dhpackage;</refname>
+
+    <refpurpose>Clonezilla bittorrent tracker</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>&dhpackage;</command>
+
+      <arg rep="Repeat"><option>options</option></arg>
+      <arg choice="req"><option>--dfile <replaceable>file</replaceable></option></arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+  <refsect1>
+    <title>DESCRIPTION</title>
+
+    <para>This manual page documents briefly the
+      <command>&dhpackage;</command> command.</para>
+
+    <para>This manual page was written for the &debian; distribution
+      because the original program does not have a manual page.</para>
+
+    <para><command>&dhpackage;</command> is a "tracker" for bittorrent clients in
+      Clonezilla environment, and is not for general bittorrent purpose. This program
+      keeps track of the completion of each client, and communicates that information when
+      requested to other clients.</para>
+
+    <para>There is one required option, --dfile, which specifies what <replaceable>file</replaceable> to store the recent downloader information.</para>
+
+  </refsect1>
+  <refsect1>
+    <title>OPTIONS</title>
+
+    <para>These programs follow the usual &gnu; command line syntax,
+      with long options starting with two dashes (`--').  A summary of
+      options is included below.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><option>--dfile <replaceable>file</replaceable></option></term>
+        <listitem>
+          <para>the <replaceable>file</replaceable> to store the recent downloader information (required)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--port <replaceable>port</replaceable></option></term>
+        <listitem>
+          <para>the <replaceable>port</replaceable> to listen on (defaults to 80)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--bind <replaceable>ip</replaceable>|<replaceable>hostname</replaceable>[,<replaceable>ip</replaceable>|<replaceable>hostname</replaceable> ...]</option></term>
+        <listitem>
+          <para>a comma-separated list of <replaceable>ips</replaceable> and <replaceable>hostnames</replaceable> to bind to locally (defaults to '')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--ipv6_enabled</option> 0|1</term>
+        <listitem>
+          <para>whether to allow the tracker to connect to peers via IPv6 (defaults to 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--ipv6_binds_v4</option> 0|1</term>
+        <listitem>
+          <para>whether an IPv6 server socket will also field IPv4 connections (defaults to 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--socket_timeout <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>then number of <replaceable>seconds</replaceable> to use as a timeout for closing connections (defaults to 15)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--save_dfile_interval <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>the number of <replaceable>seconds</replaceable> between saving the dfile (defaults to 300)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--timeout_downloaders_interval <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>the number of <replaceable>seconds</replaceable> between expiring downloaders (defaults to 2700)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--reannounce_interval <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>the number of <replaceable>seconds</replaceable> downloaders should wait between reannouncements
+	    (defaults to 1800)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--response_size <replaceable>num</replaceable></option></term>
+        <listitem>
+          <para>the <replaceable>num</replaceable> of peers to send in an info message (defaults to 50)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--timeout_check_interval <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>the number of <replaceable>seconds</replaceable> to wait between checking if any connections have timed out
+	    (defaults to 5)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--nat_check <replaceable>num</replaceable></option></term>
+        <listitem>
+          <para>check <replaceable>num</replaceable> times if a downloader is behind a NAT (0 = don't
+	    check) (defaults to 3)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--log_nat_checks</option> 0|1</term>
+        <listitem>
+          <para>whether to add entries to the log for nat-check results (defaults to 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--min_time_between_log_flushes <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>the minimum number of <replaceable>seconds</replaceable> it must have been since the last flush to do another one
+	    (defaults to 3.0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--min_time_between_cache_refreshes <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>the minimum number of <replaceable>seconds</replaceable> before a cache is considered stale and is
+	    flushed (defaults to 600.0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--allowed_dir <replaceable>directory</replaceable></option></term>
+        <listitem>
+          <para>only allow downloads for torrents in this <replaceable>directory</replaceable> (defaults to '')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--allowed_list <replaceable>file</replaceable></option></term>
+        <listitem>
+          <para>only allow downloads for hashes in this <replaceable>file</replaceable> (hex format, one per
+	    line), cannot be used with allowed_dir (defaults to '')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--allowed_controls</option> 0|1</term>
+        <listitem>
+          <para>whether to allow special keys in torrents in the allowed_dir to affect tracker
+	    access (defaults to 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--multitracker_enabled</option> 0|1</term>
+        <listitem>
+          <para>whether to enable multitracker operation (defaults to 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--multitracker_allowed</option> autodetect|none|all</term>
+        <listitem>
+          <para>whether to allow incoming tracker announces (can be none, autodetect
+	    or all) (defaults to 'autodetect')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--multitracker_reannounce_interval <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>number of <replaceable>seconds</replaceable> between outgoing tracker announces (defaults to 120)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--multitracker_maxpeers <replaceable>num</replaceable></option></term>
+        <listitem>
+          <para>the <replaceable>num</replaceable> of peers to get in a tracker announce (defaults to 20)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--aggregate_forward <replaceable>url</replaceable>[,<replaceable>password</replaceable>]</option></term>
+        <listitem>
+          <para>if set, forwards all non-multitracker to
+	    this <replaceable>url</replaceable> with this optional <replaceable>password</replaceable> (defaults to '')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--aggregator</option> 0|1|<replaceable>password</replaceable></term>
+        <listitem>
+          <para>whether to act as a data aggregator rather than a tracker. If
+	    enabled, may be 1, or <replaceable>password</replaceable>; if <replaceable>password</replaceable> is set, then an
+	      incoming password is required for access (defaults to '0')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--hupmonitor</option> 0|1</term>
+        <listitem>
+          <para>whether to reopen the log file upon receipt of HUP signal (defaults to 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--http_timeout <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>number of <replaceable>seconds</replaceable> to wait before assuming that an http connection has
+	    timed out (defaults to 60)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--parse_dir_interval <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>number of <replaceable>seconds</replaceable> between reloading of allowed_dir (defaults to 60)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--show_infopage</option> 0|1</term>
+        <listitem>
+          <para>whether to display an info page when the tracker's root dir is loaded
+	    (defaults to 1)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--infopage_redirect <replaceable>URL</replaceable></option></term>
+        <listitem>
+          <para>redirect the info page to this <replaceable>URL</replaceable> (defaults to '')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--show_names</option> 0|1</term>
+        <listitem>
+          <para>whether to display names from allowed dir (defaults to 1)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--favicon <replaceable>filename</replaceable></option></term>
+        <listitem>
+          <para>the <replaceable>filename</replaceable> containing x-icon data to return when browser requests
+	    favicon.ico (defaults to '')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--allowed_ips <replaceable>file</replaceable></option></term>
+        <listitem>
+          <para>only allow connections from IPs specified in the given <replaceable>file</replaceable>, which
+	    contains subnet data in the format: aa.bb.cc.dd/len (defaults to '')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--banned_ips <replaceable>file</replaceable></option></term>
+        <listitem>
+          <para>don't allow connections from IPs specified in the given <replaceable>file</replaceable>, which
+	    contains IP range data in the format: xxx:xxx:ip1-ip2 (defaults to '')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--only_local_override_ip</option> 0|1|2</term>
+        <listitem>
+          <para>ignore the ip GET parameter from machines which aren't on local
+	    network IPs (0 = never, 1 = always, 2 = ignore if NAT checking is not
+	    enabled) (defaults to 2)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--logfile <replaceable>file</replaceable></option></term>
+        <listitem>
+          <para>write tracker logs to this <replaceable>file</replaceable>, use '-' for stdout (defaults to '-')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--allow_get</option> 0|1</term>
+        <listitem>
+          <para>use with allowed_dir; adds a /file?hash=<replaceable>hash</replaceable> URL that allows users
+	    to download the torrent file (defaults to 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--keep_dead</option> 0|1</term>
+        <listitem>
+          <para>keep dead torrents after they expire (so they still show up on your
+	    /scrape and web page) (defaults to 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--scrape_allowed</option> full|specific|none</term>
+        <listitem>
+          <para>scrape access allowed (can be none, specific or full) (defaults to full)</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--dedicated_seed_id <replaceable>code</replaceable></option></term>
+        <listitem>
+          <para>the <replaceable>code</replaceable> to require from clients to indicate that they are
+	    dedicated seeders. This allows the tracker to monitor dedicated seed(s) and flag torrents as
+	    seeded. (defaults to '')</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--tracker_timeout <replaceable>seconds</replaceable></option></term>
+        <listitem>
+          <para>the number of <replaceable>seconds</replaceable> for this tracker to keep
+            (defaults to 0, i.e. forever)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><option>--tracker_max_completed <replaceable>number</replaceable></option></term>
+        <listitem>
+          <para>the number of <replaceable>completed clients</replaceable> for this tracker to exit 
+            (defaults to 0, i.e. forever)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>SEE ALSO</title>
+    <para>
+      <citerefentry><refentrytitle>bittorrent-downloader</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
+    </para>
+  </refsect1>
+  <refsect1>
+    <title>AUTHOR</title>
+    <para>This manual page was written by &dhusername; &lt;&dhemail;> (based on the original man pages written by Micah Anderson &lt;micah@debian.org>) for
+      the &debian; system (but may be used by others).  Permission is
+      granted to copy, distribute and/or modify this document under
+      the terms of the &gnu; General Public License, Version 2 or any
+      later version published by the Free Software Foundation.
+    </para>
+    <para>
+      On Debian systems, the complete text of the GNU General Public
+      License can be found in /usr/share/common-licenses/GPL.
+    </para>
+  </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-default-dtd-file:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

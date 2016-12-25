@@ -1,0 +1,18 @@
+Source: ocs-bttrack
+Section: net
+Priority: optional
+Maintainer: Steven Shiau <steven@clonezilla.org> 
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: python-all (>= 2.6.6-3~), docbook-to-man
+Standards-Version: 3.8.4
+Homepage: http://clonezilla.org
+
+Package: ocs-bttrack
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Suggests: python-psyco
+Recommends: python-crypto
+Description: bittorrent tracker for Clonezilla server edition
+ Ocs-bttrack is a bittorrent tracker modified from the original
+ BitTornado. It is used only with Clonezilla SE, not for general 
+ bittorrent purpose.
